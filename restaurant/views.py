@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from restaurant.forms import ApplicationForm, CustomerForm
 
 
 def home(request):
@@ -22,3 +23,17 @@ def menu(request, dish):
 def book(request):
     response = HttpResponse('Make a booking')
     return response
+
+def form_view(request):
+    form = ApplicationForm
+    context = {"form":form}
+    return render(request, "apply.html",context)
+
+def customer_view(request):
+    form = CustomerForm
+    if request.method =='POST':
+        form = CustomerForm(request.POST)
+        if form.is_valid():
+            form.save()
+    context = {"form":form}
+    return render(request, "apply.html",context)

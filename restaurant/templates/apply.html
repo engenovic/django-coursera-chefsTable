@@ -1,0 +1,10 @@
+<html>
+<body>
+    <form action="/form" action="POST">
+        {% csrf_token %}
+        <table>
+            {{form}}
+        </table>
+        <input type="submit"> 
+</body>
+<html>
