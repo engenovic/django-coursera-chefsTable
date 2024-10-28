@@ -1,12 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from restaurant.forms import ApplicationForm, CustomerForm
+from .models import Menu
 
 
 def home(request):
     path = request.path
     response = HttpResponse('This works')
     return response
+
+
+def about(request):
+    about_content = {'about': 'We are based in Kericho as the best hotel hagdhjjhjhjhjhjjhjhjhjhasdddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd'}
+    return render(request, 'about.html', {'content':about_content})
 
 
 def menu(request, dish):
@@ -17,8 +23,16 @@ def menu(request, dish):
         'githeri': 'A traditional one-pot dish made from boiled maize and beans, sometimes mixed with vegetables, potatoes, or meat.',
         'chapati': 'A soft, round, flatbread made from wheat flour, water, and oil. It is often served alongside stews or curries.'
     }
-    description = menu[dish]
-    return HttpResponse(f"<h2> {dish}: </h2>" + description)
+    
+    # description = menu[dish]
+    # return HttpResponse(f"<h2> {dish}: </h2>" + description)
+    return render (request, 'menu.html',{'context':menu})
+
+def menu_by_id(request):
+  newmenu = Menu.objects.all()
+  newmenu_dict = {'menu': newmenu}
+  return render(request, 'menu_card.html',newmenu_dict)
+
 
 def book(request):
     response = HttpResponse('Make a booking')

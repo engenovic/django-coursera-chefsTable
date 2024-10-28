@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Card</title>
+  </head>
+  <body>
+    <h2>Menu Card</h2>
+    {% if menu %}
+     {% for item in menu %}
+     <p> {{item.name}} : {{item.price}} </p>
+    {% endfor %} 
+    {% else %}
+    No items found!
+
+    {% endif %}
+  </body>
+</html>

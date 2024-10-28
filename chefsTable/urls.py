@@ -4,7 +4,7 @@ from .import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('restaurant.urls'))
+    path('', include('restaurant.urls')),
 ]
 
 handler404 = 'chefsTable.views.handler404'
